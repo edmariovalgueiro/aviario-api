@@ -14,9 +14,8 @@ import com.projetointegrador.model.Temperatura;
 @Repository
 public interface ITemperaturaRepository extends JpaRepository<Temperatura, Long> {
 
-	//@Query(value = "SELECT * FROM Temperatura WHERE BETWEEN :startDate AND :endDate AND idGalpao = :id_galpao")
-	//public List<Temperatura> getAllBetweenDates(@Param("startDate")Timestamp startDate,
-		//	@Param("endDate")Timestamp endDate, 
-			//@Param("id_galpao") Long id_galpao);  
-	
+		@Query(
+			value = "SELECT * FROM (SELECT * FROM Temperatura WHERE data_hora BETWEEN :startDate AND :endDate) u WHERE u.id_galpao = :id_galpao",
+			nativeQuery = true)
+	public List<Temperatura> getAllBetweenDates(@Param("startDate")Timestamp startDate, @Param("endDate")Timestamp endDate, @Param("id_galpao") Long id_galpao);  	
 }

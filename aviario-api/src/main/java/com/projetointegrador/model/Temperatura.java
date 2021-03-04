@@ -4,16 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
 import java.sql.Timestamp;
 
 @Entity
+@Table(name = "Temperatura")
 public class Temperatura {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idTemperatura;
 	
-	private int idGalpao;
+	private Long idGalpao;
 	private Timestamp data_hora;
 	private double temperatura;
 	private double umidade;
@@ -28,11 +31,11 @@ public class Temperatura {
 		this.idTemperatura = idTemperatura;
 	}
 
-	public int getIdGalpao() {
+	public Long getIdGalpao() {
 		return idGalpao;
 	}
 
-	public void setIdGalpao(int idGalpao) {
+	public void setIdGalpao(Long idGalpao) {
 		this.idGalpao = idGalpao;
 	}
 	
@@ -60,19 +63,12 @@ public class Temperatura {
 		this.umidade = umidade;
 	}
 
+	
+
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((data_hora == null) ? 0 : data_hora.hashCode());
-		result = prime * result + idGalpao;
-		result = prime * result + ((idTemperatura == null) ? 0 : idTemperatura.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(temperatura);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(umidade);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		return result;
+		// TODO Auto-generated method stub
+		return super.hashCode();
 	}
 
 	@Override
